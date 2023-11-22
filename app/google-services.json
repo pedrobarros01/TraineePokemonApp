@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "321141792901",
+    "firebase_url": "https://poke-app-fc758-default-rtdb.firebaseio.com",
+    "project_id": "poke-app-fc758",
+    "storage_bucket": "poke-app-fc758.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321141792901:android:c93bcd54da9aef6f0bc9ec",
+        "android_client_info": {
+          "package_name": "com.example.traineepokemonapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSNvKDprw81GMUcUSjc5EfI3Hdy9jF3Ms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
