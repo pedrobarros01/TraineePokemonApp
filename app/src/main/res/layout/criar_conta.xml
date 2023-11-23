@@ -12,7 +12,7 @@
         android:src="@drawable/ic_launcher_foreground" />
 
     <EditText
-        android:id="@+id/editTextUsername"
+        android:id="@+id/editCriarUser"
         android:layout_width="395dp"
         android:layout_height="75dp"
         android:layout_below="@id/imageView"
@@ -21,33 +21,22 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/editCriarSenha"
         android:layout_width="395dp"
         android:layout_height="75dp"
-        android:layout_below="@id/editTextUsername"
+        android:layout_below="@id/editCriarUser"
         android:layout_marginTop="8dp"
         android:hint="Senha"
         android:inputType="textPassword" />
 
-    <TextView
-        android:id="@+id/textCriarConta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextPassword"
-        android:layout_marginTop="8dp"
-        android:clickable="true"
-        android:onClick="onCriarClick"
-        android:text="Não tem uma conta? "
-        android:textColor="@android:color/darker_gray"
-        android:textSize="18sp" />
-
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnCriar"
         android:layout_width="121dp"
         android:layout_height="64dp"
-        android:layout_below="@id/textCriarConta"
+        android:layout_below="@id/editCriarSenha"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="-1dp"
-        android:text="Entrar" />
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:text="Registrar" />
 
 </RelativeLayout>
