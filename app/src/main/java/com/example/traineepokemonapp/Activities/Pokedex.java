@@ -1,10 +1,17 @@
 package com.example.traineepokemonapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.traineepokemonapp.R;
+import com.example.traineepokemonapp.adapter.AdapterPokedex;
 import com.example.traineepokemonapp.api.PokemonService;
 import com.example.traineepokemonapp.model.Pokemon;
 
@@ -18,16 +25,20 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Pokedex extends AppCompatActivity {
-
+    private List<Pokemon> listPokemons;
+    private RecyclerView pokedex;
     private Retrofit retrofit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokedex);
+        pokedex = findViewById(R.id.pokedex);
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://pokeapi.co/api/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
+        //CarregarPokedex();
         RecuperaPokemons1G();
 
     }
@@ -44,6 +55,9 @@ public class Pokedex extends AppCompatActivity {
                         Pokemon poke = response.body();
                         pokemons.add(poke);
                         Log.i("POKEMONS", poke.getName());
+                        if(pokemons.size() == 151){
+                            CarregarPokedex(pokemons);
+                        }
                     }
 
                 }
@@ -54,5 +68,18 @@ public class Pokedex extends AppCompatActivity {
                 }
             });
         }
+    }
+    private void CarregarPokedex(List<Pokemon> pokemons){
+        //this.listPokemons = RecuperaPokemons1G();
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        pokedex.setLayoutManager(layoutManager);
+        pokedex.addItemDecoration(new DividerItemDecoration(
+                getApplicationContext(),
+                LinearLayout.VERTICAL
+        ));
+        pokedex.setHasFixedSize(true);
+
+        AdapterPokedex adapter = new AdapterPokedex(pokemons);
+        pokedex.setAdapter(adapter);
     }
 }

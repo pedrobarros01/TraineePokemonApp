@@ -25,6 +25,7 @@
             android:textAlignment="center" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/pokedex"
             android:layout_width="match_parent"
             android:layout_height="609dp"
             android:layout_marginLeft="20dp"
@@ -38,14 +39,14 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/buttonEquipe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Equipe" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/buttonSimulacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
