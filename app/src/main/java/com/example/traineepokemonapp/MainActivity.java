@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         textCriarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TimeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CriarContaActivity.class);
                 startActivity(intent);
             }
         });
