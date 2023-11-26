@@ -1,4 +1,4 @@
-package com.example.traineepokemonapp;
+package com.example.traineepokemonapp.Activities;
 
 public class CriarConta {
 

@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.traineepokemonapp.Activities.CriarContaActivity;
+import com.example.traineepokemonapp.Activities.TimeActivity;
+import com.example.traineepokemonapp.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         textCriarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CriarContaActivity.class);
+                Intent intent = new Intent(getApplicationContext(), TimeActivity.class);
                 startActivity(intent);
             }
         });

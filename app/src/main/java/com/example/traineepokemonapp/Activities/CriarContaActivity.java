@@ -1,4 +1,4 @@
-package com.example.traineepokemonapp;
+package com.example.traineepokemonapp.Activities;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,6 +6,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.traineepokemonapp.Activities.CriarConta;
+import com.example.traineepokemonapp.R;
 
 public class CriarContaActivity extends AppCompatActivity {
 
