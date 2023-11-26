@@ -20,20 +20,11 @@
         android:hint="Nome do usuário"
         android:inputType="text" />
 
-    <EditText
-        android:id="@+id/editCriarSenha"
-        android:layout_width="395dp"
-        android:layout_height="75dp"
-        android:layout_below="@id/editCriarUser"
-        android:layout_marginTop="8dp"
-        android:hint="Senha"
-        android:inputType="textPassword" />
-
     <Button
         android:id="@+id/btnCriar"
         android:layout_width="121dp"
         android:layout_height="64dp"
-        android:layout_below="@id/editCriarSenha"
+        android:layout_below="@id/editCriarUser"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="6dp"
         android:layout_marginEnd="16dp"

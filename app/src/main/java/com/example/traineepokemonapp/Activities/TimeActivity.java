@@ -1,9 +1,13 @@
 package com.example.traineepokemonapp.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.traineepokemonapp.R;
@@ -29,6 +33,7 @@ public class TimeActivity extends AppCompatActivity {
     private int PokemonID;
     private int cont = 0;
     private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+    private Button btnPokedex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,14 @@ public class TimeActivity extends AppCompatActivity {
                 findViewById(R.id.slot5),
                 findViewById(R.id.slot6)
         };
+
+        btnPokedex.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Pokedex.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void firebaseTime(){
