@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.traineepokemonapp.R;
 import com.example.traineepokemonapp.adapter.AdapterPokedex;
+import com.example.traineepokemonapp.api.PokemonAPI;
 import com.example.traineepokemonapp.api.PokemonService;
 import com.example.traineepokemonapp.model.Pokemon;
 
@@ -27,16 +28,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Pokedex extends AppCompatActivity {
     private List<Pokemon> listPokemons;
     private RecyclerView pokedex;
-    private Retrofit retrofit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokedex);
         pokedex = findViewById(R.id.pokedex);
-        retrofit = new Retrofit.Builder()
-                .baseUrl("https://pokeapi.co/api/v2/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
         //CarregarPokedex();
         RecuperaPokemons1G();
@@ -45,9 +42,9 @@ public class Pokedex extends AppCompatActivity {
     private void RecuperaPokemons1G(){
         List<Pokemon> pokemons = new ArrayList<>();
         int totalPokemons = 151;
-        PokemonService pokemonService = retrofit.create(PokemonService.class);
+        PokemonAPI pokemonAPI = new PokemonAPI();
         for (int i = 1; i <= totalPokemons; i++) {
-            Call<Pokemon> call = pokemonService.RecuperarPokemonsPokedex(i);
+            Call<Pokemon> call = pokemonAPI.RecuperarPokemon(i);
             call.enqueue(new Callback<Pokemon>() {
                 @Override
                 public void onResponse(Call<Pokemon> call, Response<Pokemon> response) {
