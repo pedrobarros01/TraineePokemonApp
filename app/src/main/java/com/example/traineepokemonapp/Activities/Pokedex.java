@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
@@ -15,6 +17,8 @@ import com.example.traineepokemonapp.adapter.AdapterPokedex;
 import com.example.traineepokemonapp.api.PokemonAPI;
 import com.example.traineepokemonapp.api.PokemonService;
 import com.example.traineepokemonapp.model.Pokemon;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,16 +29,18 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Pokedex extends AppCompatActivity {
+public class Pokedex extends AppCompatActivity implements AdapterPokedex.PokemonEventsInterface{
     private List<Pokemon> listPokemons;
     private RecyclerView pokedex;
+    private List<Integer> pokemonsEquipe ;
+    private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokedex);
         pokedex = findViewById(R.id.pokedex);
-
+        pokemonsEquipe = new ArrayList<>();
         //CarregarPokedex();
         RecuperaPokemons1G();
 
@@ -76,7 +82,28 @@ public class Pokedex extends AppCompatActivity {
         ));
         pokedex.setHasFixedSize(true);
 
-        AdapterPokedex adapter = new AdapterPokedex(pokemons);
+        AdapterPokedex adapter = new AdapterPokedex(pokemons, this);
         pokedex.setAdapter(adapter);
     }
+
+    @Override
+    public void onItemLongClik(Pokemon pokemon) {
+        if(pokemonsEquipe.size() < 6){
+            pokemonsEquipe.add(pokemon.getId());
+            DatabaseReference time = reference.child("times").child("nomeUsuario");
+            time.setValue(pokemonsEquipe);
+            Toast.makeText(this, "Pokemon Cadastrado na equipe", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "Equipe Cheia!!", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    public void onItemClick(int id) {
+        Intent intent = new Intent(this, PokemonInfo.class);
+        intent.putExtra("id", String.valueOf(id));
+        startActivity(intent);
+    }
+
 }

@@ -6,6 +6,9 @@ public class Pokemon {
 
     private int id;
     private String name;
+    private List<Stats> stats;
+    private int height;
+    private int weight;
     private Sprites sprites;
     private List<Types> types;
     public String getName() {
@@ -14,7 +17,27 @@ public class Pokemon {
     public int getId() {
         return id;
     }
+    public int getHeight() {
+        return height;
+    }
 
+    public void setHeight(int height) {
+        this.height = height;
+    }
+    public int getWeight() {
+        return weight;
+    }
+
+    public List<Stats> getStats() {
+        return stats;
+    }
+
+    public void setStats(List<Stats> stats) {
+        this.stats = stats;
+    }
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
     public void setId(int id) {
         this.id = id;
     }
