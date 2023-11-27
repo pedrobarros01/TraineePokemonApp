@@ -1,57 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".Activities.Pokedex">
 
-    <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Bem vindo(a) ao Pokemon Trainee"
-            android:textAlignment="center" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pokedex"
-            android:layout_width="match_parent"
-            android:layout_height="609dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginRight="20dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="409dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/buttonEquipe"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Equipe" />
+                android:layout_marginTop="6dp"
+                android:text="Bem vindo(a) ao Pokemon Trainee"
+                android:textAlignment="center" />
 
-            <Button
-                android:id="@+id/buttonSimulacao"
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pokedex"
+                android:layout_width="match_parent"
+                android:layout_height="609dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Simulação" />
+                android:layout_marginHorizontal="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonEquipe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Equipe" />
+
+                <Button
+                    android:id="@+id/buttonSimulacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Simulação" />
+            </LinearLayout>
+
         </LinearLayout>
-
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
