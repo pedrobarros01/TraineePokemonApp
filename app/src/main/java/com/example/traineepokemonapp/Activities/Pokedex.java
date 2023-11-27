@@ -43,7 +43,7 @@ public class Pokedex extends AppCompatActivity implements AdapterPokedex.Pokemon
     private List<Pokemon> listPokemons;
     private RecyclerView pokedex;
     private Button btnEquipe, btnSimulacao;
-
+    private String nomeUsuario;
     private List<Integer> pokemonsEquipe ;
     private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
@@ -51,6 +51,8 @@ public class Pokedex extends AppCompatActivity implements AdapterPokedex.Pokemon
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokedex);
+        Bundle dados = getIntent().getExtras();
+        this.nomeUsuario = dados.getString("usuario").toString();
         pokedex = findViewById(R.id.pokedex);
         btnEquipe = findViewById(R.id.buttonEquipe);
         btnSimulacao = findViewById(R.id.buttonSimulacao);
@@ -63,13 +65,22 @@ public class Pokedex extends AppCompatActivity implements AdapterPokedex.Pokemon
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PokeSimulation.class);
+                intent.putExtra("usuario", nomeUsuario);
+                startActivity(intent);
+            }
+        });
+        btnEquipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TimeActivity.class);
+                intent.putExtra("usuario", nomeUsuario);
                 startActivity(intent);
             }
         });
 
     }
     private void RecuperarEquipe(){
-        DatabaseReference time = reference.child("times").child("nomeUsuario");
+        DatabaseReference time = reference.child("times").child(nomeUsuario);
         time.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -142,7 +153,7 @@ public class Pokedex extends AppCompatActivity implements AdapterPokedex.Pokemon
         if(pokemonsEquipe.size() < 6){
             pokemonsEquipe.add(pokemon.getId());
             if(pokemonsEquipe.size() == 6){
-                DatabaseReference time = reference.child("times").child("nomeUsuario");
+                DatabaseReference time = reference.child("times").child(nomeUsuario);
                 time.setValue(pokemonsEquipe);
             }
 

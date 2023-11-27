@@ -46,10 +46,13 @@ public class PokeSimulation extends AppCompatActivity implements AdapterChampion
     private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
     private ImageView imgPoke1, imgPoke2, imgPoke3;
     private RecyclerView listaGary;
+    private String nomeUsuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poke_simulation);
+        Bundle dados = getIntent().getExtras();
+        this.nomeUsuario = dados.getString("usuario").toString();
         imgPoke1 = findViewById(R.id.pokeUser1);
         imgPoke2 = findViewById(R.id.pokeUser2);
         imgPoke3 = findViewById(R.id.pokeUser3);
@@ -65,7 +68,7 @@ public class PokeSimulation extends AppCompatActivity implements AdapterChampion
     }
 
     private void  PegarPokemonsUser(){
-        DatabaseReference timeRef = reference.child("times").child("nomeUsuario");
+        DatabaseReference timeRef = reference.child("times").child(nomeUsuario);
         timeRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

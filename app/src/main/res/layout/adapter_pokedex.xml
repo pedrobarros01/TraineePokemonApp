@@ -16,6 +16,9 @@
             android:layout_width="52dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <LinearLayout

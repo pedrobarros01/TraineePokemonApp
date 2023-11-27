@@ -12,7 +12,6 @@ import android.widget.ImageView;
 
 import com.example.traineepokemonapp.R;
 import com.example.traineepokemonapp.api.PokemonAPI;
-import com.example.traineepokemonapp.api.PokemonService;
 import com.example.traineepokemonapp.model.Pokemon;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,25 +20,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TimeActivity extends AppCompatActivity {
 
-    public ImageView[] pokemonSlots;
-    private int PokemonID;
-    private int cont = 0;
+    private ImageView[] pokemonSlots;
     private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
     private Button btnPokedex;
+    private String nomeUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.time);
-
+        setContentView(R.layout.activity_time);
+        Bundle dados = getIntent().getExtras();
+        nomeUsuario = dados.getString("usuario");
         pokemonSlots = new ImageView[]{
                 findViewById(R.id.slot1),
                 findViewById(R.id.slot2),
@@ -48,25 +45,26 @@ public class TimeActivity extends AppCompatActivity {
                 findViewById(R.id.slot5),
                 findViewById(R.id.slot6)
         };
-
+        btnPokedex = findViewById(R.id.btnPokedex);
         btnPokedex.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Pokedex.class);
+                intent.putExtra("usuario", nomeUsuario);
                 startActivity(intent);
             }
         });
+        firebaseTime();
     }
 
     private void firebaseTime(){
-        DatabaseReference noFilho = reference.child("time");
+        DatabaseReference noFilho = reference.child("times").child(nomeUsuario);
         noFilho.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot currentPokemon:snapshot.getChildren()){
-                    int id = Integer.parseInt(currentPokemon.child("id").getValue().toString());
-                    pokemonIdSprite(id, cont);
-                    cont++;
+                    int id = Integer.parseInt(currentPokemon.getValue().toString());
+                    pokemonIdSprite(id, Integer.parseInt(currentPokemon.getKey().toString()));
                 }
             }
 
@@ -87,7 +85,7 @@ public class TimeActivity extends AppCompatActivity {
                 int id = poke.getId();
                 String sprite = poke.getSprites().getFront_default();
 
-                Picasso.get().load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png").into(pokemonSlots[cont]);
+                Picasso.get().load(sprite).into(pokemonSlots[cont]);
             }
 
             @Override

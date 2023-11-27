@@ -9,9 +9,10 @@
     android:alignmentMode="alignMargins"
     android:columnOrderPreserved="false"
     android:layout_gravity="center"
-    tools:context=".MainActivity">
+    tools:context=".Activities.TimeActivity"
+    >
 
-    <!-- Slot 1 -->
+
     <ImageView
         android:id="@+id/slot1"
         android:layout_width="0dp"
@@ -22,7 +23,7 @@
         android:layout_margin="8dp"
         android:src="@drawable/ic_launcher_background"/>
 
-    <!-- Slot 2 -->
+
     <ImageView
         android:id="@+id/slot2"
         android:layout_width="0dp"
@@ -33,7 +34,7 @@
         android:layout_margin="8dp"
         android:src="@drawable/ic_launcher_background"/>
 
-    <!-- Slot 3 -->
+
     <ImageView
         android:id="@+id/slot3"
         android:layout_width="0dp"
@@ -44,7 +45,7 @@
         android:layout_margin="8dp"
         android:src="@drawable/ic_launcher_background"/>
 
-    <!-- Slot 4 -->
+
     <ImageView
         android:id="@+id/slot4"
         android:layout_width="0dp"
@@ -55,7 +56,7 @@
         android:layout_margin="8dp"
         android:src="@drawable/ic_launcher_background"/>
 
-    <!-- Slot 5 -->
+
     <ImageView
         android:id="@+id/slot5"
         android:layout_width="0dp"
@@ -66,7 +67,7 @@
         android:layout_margin="8dp"
         android:src="@drawable/ic_launcher_background"/>
 
-    <!-- Slot 6 -->
+
     <ImageView
         android:id="@+id/slot6"
         android:layout_width="0dp"
@@ -77,11 +78,11 @@
         android:layout_margin="8dp"
         android:src="@drawable/ic_launcher_background"/>
 
-    <!-- Pokedex Button -->
     <Button
+        android:id="@+id/btnPokedex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_columnSpan="2"
         android:layout_gravity="center"
-        android:text="Pokédex"/>
+        android:text="Pokédex" />
 </GridLayout>
