@@ -45,6 +45,48 @@ public class TimeActivity extends AppCompatActivity {
                 findViewById(R.id.slot5),
                 findViewById(R.id.slot6)
         };
+        pokemonSlots[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reference.child("times").child(nomeUsuario).child("0").removeValue();
+                pokemonSlots[0].setImageResource(R.drawable.ic_launcher_background);
+            }
+        });
+        pokemonSlots[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reference.child("times").child(nomeUsuario).child("1").removeValue();
+                pokemonSlots[1].setImageResource(R.drawable.ic_launcher_background);
+            }
+        });
+        pokemonSlots[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reference.child("times").child(nomeUsuario).child("2").removeValue();
+                pokemonSlots[2].setImageResource(R.drawable.ic_launcher_background);
+            }
+        });
+        pokemonSlots[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reference.child("times").child(nomeUsuario).child("3").removeValue();
+                pokemonSlots[3].setImageResource(R.drawable.ic_launcher_background);
+            }
+        });
+        pokemonSlots[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reference.child("times").child(nomeUsuario).child("4").removeValue();
+                pokemonSlots[4].setImageResource(R.drawable.ic_launcher_background);
+            }
+        });
+        pokemonSlots[5].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reference.child("times").child(nomeUsuario).child("5").removeValue();
+                pokemonSlots[5].setImageResource(R.drawable.ic_launcher_background);
+            }
+        });
         btnPokedex = findViewById(R.id.btnPokedex);
         btnPokedex.setOnClickListener(new View.OnClickListener() {
             @Override
