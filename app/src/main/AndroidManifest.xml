@@ -15,6 +15,9 @@
         android:theme="@style/Theme.TraineePokemonApp"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.PokeSimulation"
+            android:exported="false" />
+        <activity
             android:name=".Activities.PokemonInfo"
             android:exported="false" />
         <activity

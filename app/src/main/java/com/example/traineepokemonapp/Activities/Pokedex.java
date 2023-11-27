@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -32,6 +34,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Pokedex extends AppCompatActivity implements AdapterPokedex.PokemonEventsInterface{
     private List<Pokemon> listPokemons;
     private RecyclerView pokedex;
+    private Button btnEquipe, btnSimulacao;
+
     private List<Integer> pokemonsEquipe ;
     private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
@@ -40,9 +44,19 @@ public class Pokedex extends AppCompatActivity implements AdapterPokedex.Pokemon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokedex);
         pokedex = findViewById(R.id.pokedex);
+        btnEquipe = findViewById(R.id.buttonEquipe);
+        btnSimulacao = findViewById(R.id.buttonSimulacao);
         pokemonsEquipe = new ArrayList<>();
         //CarregarPokedex();
         RecuperaPokemons1G();
+
+        btnSimulacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PokeSimulation.class);
+                startActivity(intent);
+            }
+        });
 
     }
     private void RecuperaPokemons1G(){
