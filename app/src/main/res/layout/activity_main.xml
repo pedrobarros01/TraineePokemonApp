@@ -20,6 +20,7 @@
         android:hint="Nome do usuário"
         android:inputType="text" />
 
+
     <TextView
         android:id="@+id/textCriarConta"
         android:layout_width="wrap_content"
@@ -42,3 +43,4 @@
         android:text="Entrar" />
 
 </RelativeLayout>
+

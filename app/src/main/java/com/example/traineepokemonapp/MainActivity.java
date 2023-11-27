@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
-
+    private Button btnTeste;
     private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
     private TextView textCriarConta;
     private EditText login;

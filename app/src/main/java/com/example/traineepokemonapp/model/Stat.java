@@ -1,6 +1,8 @@
 package com.example.traineepokemonapp.model;
 
-public class Type {
+public class Stat {
+
+
     private String name;
     public String getName() {
         return name;
@@ -9,8 +11,4 @@ public class Type {
     public void setName(String name) {
         this.name = name;
     }
-
-
-
 }
-
