@@ -1,5 +1,6 @@
 package com.example.traineepokemonapp.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,11 +19,18 @@ import com.example.traineepokemonapp.R;
 import com.example.traineepokemonapp.adapter.AdapterPokedex;
 import com.example.traineepokemonapp.api.PokemonAPI;
 import com.example.traineepokemonapp.api.PokemonService;
+import com.example.traineepokemonapp.helper.PokemonHelper;
 import com.example.traineepokemonapp.model.Pokemon;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -48,6 +56,7 @@ public class Pokedex extends AppCompatActivity implements AdapterPokedex.Pokemon
         btnSimulacao = findViewById(R.id.buttonSimulacao);
         pokemonsEquipe = new ArrayList<>();
         //CarregarPokedex();
+        RecuperarEquipe();
         RecuperaPokemons1G();
 
         btnSimulacao.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +67,32 @@ public class Pokedex extends AppCompatActivity implements AdapterPokedex.Pokemon
             }
         });
 
+    }
+    private void RecuperarEquipe(){
+        DatabaseReference time = reference.child("times").child("nomeUsuario");
+        time.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot currentPokemon: snapshot.getChildren()){
+
+                    int idPokemon = Integer.parseInt(currentPokemon.getValue().toString());
+                    PokemonHelper.PegarPokemon(idPokemon).addOnCompleteListener(new OnCompleteListener<Pokemon>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Pokemon> task) {
+                            if(task.isSuccessful()){
+                                Pokemon pokemon = task.getResult();
+                                pokemonsEquipe.add(pokemon.getId());
+                            }
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
     private void RecuperaPokemons1G(){
         List<Pokemon> pokemons = new ArrayList<>();
@@ -95,7 +130,9 @@ public class Pokedex extends AppCompatActivity implements AdapterPokedex.Pokemon
                 LinearLayout.VERTICAL
         ));
         pokedex.setHasFixedSize(true);
-
+        Collections.sort(pokemons, (p1, p2) -> {
+            return p1.getId() - p2.getId();
+        });
         AdapterPokedex adapter = new AdapterPokedex(pokemons, this);
         pokedex.setAdapter(adapter);
     }
@@ -104,8 +141,11 @@ public class Pokedex extends AppCompatActivity implements AdapterPokedex.Pokemon
     public void onItemLongClik(Pokemon pokemon) {
         if(pokemonsEquipe.size() < 6){
             pokemonsEquipe.add(pokemon.getId());
-            DatabaseReference time = reference.child("times").child("nomeUsuario");
-            time.setValue(pokemonsEquipe);
+            if(pokemonsEquipe.size() == 6){
+                DatabaseReference time = reference.child("times").child("nomeUsuario");
+                time.setValue(pokemonsEquipe);
+            }
+
             Toast.makeText(this, "Pokemon Cadastrado na equipe", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(this, "Equipe Cheia!!", Toast.LENGTH_SHORT).show();

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.traineepokemonapp.R;
 import com.example.traineepokemonapp.adapter.AdapterChampion;
 import com.example.traineepokemonapp.api.PokemonAPI;
+import com.example.traineepokemonapp.helper.PokemonHelper;
 import com.example.traineepokemonapp.model.Fraco;
 import com.example.traineepokemonapp.model.Pokemon;
 import com.example.traineepokemonapp.model.PokemonGary;
@@ -71,7 +72,7 @@ public class PokeSimulation extends AppCompatActivity implements AdapterChampion
                 for(DataSnapshot poketime: snapshot.getChildren()){
                     int idPokemon = Integer.parseInt(poketime.getValue().toString());
 
-                    PegarPokemon(idPokemon).addOnCompleteListener(new OnCompleteListener<Pokemon>() {
+                    PokemonHelper.PegarPokemon(idPokemon).addOnCompleteListener(new OnCompleteListener<Pokemon>() {
                         @Override
                         public void onComplete(@NonNull Task<Pokemon> task) {
                             if(task.isSuccessful()){
@@ -103,7 +104,7 @@ public class PokeSimulation extends AppCompatActivity implements AdapterChampion
 
                     int idPokemon = Integer.parseInt(currentPokemonGary.child("pokemon").getValue().toString());
 
-                    PegarPokemon(idPokemon).addOnCompleteListener(new OnCompleteListener<Pokemon>() {
+                    PokemonHelper.PegarPokemon(idPokemon).addOnCompleteListener(new OnCompleteListener<Pokemon>() {
                         @Override
                         public void onComplete(@NonNull Task<Pokemon> task) {
                             if(task.isSuccessful()){
@@ -138,29 +139,7 @@ public class PokeSimulation extends AppCompatActivity implements AdapterChampion
             }
         });
     }
-    private Task<Pokemon> PegarPokemon(int id){
-        PokemonAPI pokemonAPI = new PokemonAPI();
-        TaskCompletionSource<Pokemon> taskCompletionSource = new TaskCompletionSource<>();
-        Call<Pokemon> call = pokemonAPI.RecuperarPokemon(id);
-            call.enqueue(new Callback<Pokemon>() {
-                @Override
-                public void onResponse(Call<Pokemon> call, Response<Pokemon> response) {
-                    if(response.isSuccessful()){
-                        Pokemon poke = response.body();
-                        taskCompletionSource.setResult(poke);
 
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Pokemon> call, Throwable t) {
-
-                }
-            });
-
-
-        return taskCompletionSource.getTask();
-    }
     private void CarregarListaGary(List<PokemonGary> list){
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
