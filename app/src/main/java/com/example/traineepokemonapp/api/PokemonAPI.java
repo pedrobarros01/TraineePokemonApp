@@ -1,6 +1,7 @@
 package com.example.traineepokemonapp.api;
 
 import com.example.traineepokemonapp.model.Pokemon;
+
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 

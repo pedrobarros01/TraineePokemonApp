@@ -6,9 +6,11 @@ public class Pokemon {
 
     private int id;
     private String name;
+
     private List<Stats> stats;
     private int height;
     private int weight;
+
     private Sprites sprites;
     private List<Types> types;
     public String getName() {
@@ -60,6 +62,7 @@ public class Pokemon {
     public void setTypes(List<Types> types) {
         this.types = types;
     }
+
 
 
 

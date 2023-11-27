@@ -10,4 +10,5 @@ public interface PokemonService {
 
     @GET("pokemon/{id}")
     Call<Pokemon> RecuperarPokemonsPokedex(@Path("id") int id);
+
 }
